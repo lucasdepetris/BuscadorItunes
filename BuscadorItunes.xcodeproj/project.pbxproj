@@ -14,12 +14,8 @@
 		048C486020F8064600C9DA2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048C485E20F8064600C9DA2F /* LaunchScreen.storyboard */; };
 		048C486B20F8064600C9DA2F /* BuscadorItunesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C486A20F8064600C9DA2F /* BuscadorItunesTests.swift */; };
 		048C487620F8064600C9DA2F /* BuscadorItunesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C487520F8064600C9DA2F /* BuscadorItunesUITests.swift */; };
-		E97300B020F8E66600DCD043 /* TvShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97300AE20F8E66600DCD043 /* TvShowTableViewCell.swift */; };
-		E97300B120F8E66600DCD043 /* TvShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97300AF20F8E66600DCD043 /* TvShowTableViewCell.xib */; };
-		E97300B420F91C3C00DCD043 /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97300B220F91C3C00DCD043 /* MusicTableViewCell.swift */; };
-		E97300B520F91C3C00DCD043 /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97300B320F91C3C00DCD043 /* MusicTableViewCell.xib */; };
-		E97300B820F91DD600DCD043 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97300B620F91DD600DCD043 /* MovieTableViewCell.swift */; };
-		E97300B920F91DD600DCD043 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97300B720F91DD600DCD043 /* MovieTableViewCell.xib */; };
+		E97300B020F8E66600DCD043 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97300AE20F8E66600DCD043 /* CustomTableViewCell.swift */; };
+		E97300B120F8E66600DCD043 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97300AF20F8E66600DCD043 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,12 +49,8 @@
 		048C487120F8064600C9DA2F /* BuscadorItunesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuscadorItunesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		048C487520F8064600C9DA2F /* BuscadorItunesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscadorItunesUITests.swift; sourceTree = "<group>"; };
 		048C487720F8064600C9DA2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E97300AE20F8E66600DCD043 /* TvShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowTableViewCell.swift; sourceTree = "<group>"; };
-		E97300AF20F8E66600DCD043 /* TvShowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TvShowTableViewCell.xib; sourceTree = "<group>"; };
-		E97300B220F91C3C00DCD043 /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
-		E97300B320F91C3C00DCD043 /* MusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
-		E97300B620F91DD600DCD043 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
-		E97300B720F91DD600DCD043 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
+		E97300AE20F8E66600DCD043 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		E97300AF20F8E66600DCD043 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				E97300AD20F8E4EA00DCD043 /* cell */,
-				E97300AC20F8E4D800DCD043 /* views */,
 				048C485520F8064400C9DA2F /* AppDelegate.swift */,
 				048C485720F8064400C9DA2F /* ViewController.swift */,
 				048C485920F8064400C9DA2F /* Main.storyboard */,
@@ -139,22 +130,11 @@
 			path = BuscadorItunesUITests;
 			sourceTree = "<group>";
 		};
-		E97300AC20F8E4D800DCD043 /* views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = views;
-			sourceTree = "<group>";
-		};
 		E97300AD20F8E4EA00DCD043 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				E97300AE20F8E66600DCD043 /* TvShowTableViewCell.swift */,
-				E97300AF20F8E66600DCD043 /* TvShowTableViewCell.xib */,
-				E97300B220F91C3C00DCD043 /* MusicTableViewCell.swift */,
-				E97300B320F91C3C00DCD043 /* MusicTableViewCell.xib */,
-				E97300B620F91DD600DCD043 /* MovieTableViewCell.swift */,
-				E97300B720F91DD600DCD043 /* MovieTableViewCell.xib */,
+				E97300AE20F8E66600DCD043 /* CustomTableViewCell.swift */,
+				E97300AF20F8E66600DCD043 /* CustomTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -265,10 +245,8 @@
 			files = (
 				048C486020F8064600C9DA2F /* LaunchScreen.storyboard in Resources */,
 				048C485D20F8064600C9DA2F /* Assets.xcassets in Resources */,
-				E97300B920F91DD600DCD043 /* MovieTableViewCell.xib in Resources */,
-				E97300B120F8E66600DCD043 /* TvShowTableViewCell.xib in Resources */,
+				E97300B120F8E66600DCD043 /* CustomTableViewCell.xib in Resources */,
 				048C485B20F8064400C9DA2F /* Main.storyboard in Resources */,
-				E97300B520F91C3C00DCD043 /* MusicTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,11 +271,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E97300B820F91DD600DCD043 /* MovieTableViewCell.swift in Sources */,
-				E97300B020F8E66600DCD043 /* TvShowTableViewCell.swift in Sources */,
+				E97300B020F8E66600DCD043 /* CustomTableViewCell.swift in Sources */,
 				048C485820F8064400C9DA2F /* ViewController.swift in Sources */,
 				048C485620F8064400C9DA2F /* AppDelegate.swift in Sources */,
-				E97300B420F91C3C00DCD043 /* MusicTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

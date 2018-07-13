@@ -1,5 +1,5 @@
 //
-//  MusicTableViewCell.swift
+//  TvShowTableViewCell.swift
 //  BuscadorItunes
 //
 //  Created by Desarrollo AWS on 13/7/18.
@@ -8,11 +8,14 @@
 
 import UIKit
 
-class MusicTableViewCell: UITableViewCell {
 
-    @IBOutlet var imgMusic: UIImageView!
-    @IBOutlet var trackName: UILabel!
+
+class CustomTableViewCell: UITableViewCell {
+
+    @IBOutlet var imgTvShow: UIImageView!
     @IBOutlet var artistName: UILabel!
+    @IBOutlet var trackName: UILabel!
+    @IBOutlet var longDescription: UILabel!
     
     
     override func awakeFromNib() {

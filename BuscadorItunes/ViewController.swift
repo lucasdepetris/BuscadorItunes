@@ -50,7 +50,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.mySearchBar.delegate = self
         self.mySearchBar.placeholder = "Search..."
         
-        self.tableViewResults.register(UINib(nibName: "TvShowTableViewCell", bundle: nil), forCellReuseIdentifier: "tvShowCell")
+        self.tableViewResults.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -101,7 +101,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:TvShowTableViewCell = tableViewResults.dequeueReusableCell(withIdentifier: "tvShowCell") as! TvShowTableViewCell
+        let cell:CustomTableViewCell = tableViewResults.dequeueReusableCell(withIdentifier: "customCell") as! CustomTableViewCell
         
         if(self.resultsItunes.count > 0){
             self.heigthItunesLabel.constant = 0
