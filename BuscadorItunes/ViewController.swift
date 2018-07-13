@@ -16,7 +16,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var tableViewResults: UITableView!
     @IBOutlet weak var resultsHeight: NSLayoutConstraint!
     
-    var resultsItunes = [String]()
+    var resultsItunes = [[String:Any]]()
     var mediaType:String = "music"
     
     @IBAction func segmentedChangeValue(_ sender: Any) {
@@ -41,10 +41,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Do any additional setup after loading the view, typically from a nib.
         self.tableViewResults.delegate = self
         self.tableViewResults.dataSource = self
-        tableViewResults.estimatedRowHeight = 50
+        tableViewResults.estimatedRowHeight = 131
         tableViewResults.rowHeight = UITableViewAutomaticDimension
         self.mySearchBar.delegate = self
-        self.tableViewResults.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        //self.tableViewResults.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        self.tableViewResults.register(UINib(nibName: "TvShowTableViewCell", bundle: nil), forCellReuseIdentifier: "tvShowCell")
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -72,11 +73,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+        let cell:TvShowTableViewCell = tableViewResults.dequeueReusableCell(withIdentifier: "tvShowCell") as! TvShowTableViewCell
         
-        cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+        cell.artistName.text = "Section \(indexPath.section) Row \(indexPath.row)"
         
         return cell
+        
     }
     
     //Pragma Mark SearchBar Delegates Methods
@@ -102,9 +104,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
                 print(jsonArray)
                 //Now get title value
-                guard let title = jsonArray["resultCount"] as? Int else { return }
-                print("TITLE")
-                print(title) // delectus aut autem
+                guard let results = jsonArray["results"] as? [[String:Any]] else { return }
+                print("RESULTS")
+                print(results[0]["trackId"]) // delectus aut autem
+                
+                self.resultsItunes = results
+                print(self.resultsItunes)
+                
+                DispatchQueue.main.async {
+                    self.tableViewResults.reloadData()
+                    self.viewDidLayoutSubviews()
+                }
                 
             } catch let parsingError {
                 print("Error", parsingError)
