@@ -101,6 +101,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     return
                 }
                 print(jsonArray)
+                //Now get title value
+                guard let title = jsonArray["resultCount"] as? Int else { return }
+                print("TITLE")
+                print(title) // delectus aut autem
                 
             } catch let parsingError {
                 print("Error", parsingError)
