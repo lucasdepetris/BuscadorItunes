@@ -15,6 +15,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var mySearchBar: UISearchBar!
     @IBOutlet weak var tableViewResults: UITableView!
     @IBOutlet weak var resultsHeight: NSLayoutConstraint!
+    @IBOutlet weak var heigthItunesLabel: NSLayoutConstraint!
+    @IBOutlet weak var searchItunesLabel: UILabel!
     
     var resultsItunes = [[String:Any]]()
     var mediaType:String? = "music"
@@ -102,6 +104,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let cell:TvShowTableViewCell = tableViewResults.dequeueReusableCell(withIdentifier: "tvShowCell") as! TvShowTableViewCell
         
         if(self.resultsItunes.count > 0){
+            self.heigthItunesLabel.constant = 0
             switch mediaType {
                 case "music":
                     cell.artistName.text = resultsItunes[indexPath.row]["artistName"] as? String
@@ -135,6 +138,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     cell.imgTvShow.image = UIImage(data: dataImage)
                 }
             }
+        }else{
+            self.heigthItunesLabel.constant = 39
+            self.searchItunesLabel.text = "Lo sentimos, No se han encontrado resultados."
         }
         return cell
         
