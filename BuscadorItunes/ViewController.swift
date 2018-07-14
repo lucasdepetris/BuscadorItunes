@@ -22,7 +22,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     var resultsItunes = [[String:Any]]()
     var mediaType:String? = "music"
-    var player = AVPlayer()
+    var player:AVPlayer? = nil
     //Create Activity Indicator
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
@@ -85,8 +85,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func stopCurrentMusic(){
-        player.pause()
-        player = AVPlayer()
+        player?.pause()
     }
     
     func showAlertError(message:String){
@@ -180,15 +179,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let playerLayer = AVPlayerLayer(player: player)
             playerLayer.frame = self.view.bounds
             self.view.layer.addSublayer(playerLayer)
-            player.play()
+            player?.play()
         }
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print("deselect")
-        player.pause()
-        player = AVPlayer()
-    }
     //Pragma Mark SearchBar Delegates Methods
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(searchBar.text != ""){
