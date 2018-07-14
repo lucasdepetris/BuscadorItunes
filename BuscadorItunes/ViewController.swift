@@ -22,6 +22,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     var resultsItunes = [[String:Any]]()
     var mediaType:String? = "music"
+    var player = AVPlayer()
     //Create Activity Indicator
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
@@ -45,18 +46,27 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.tableViewResults.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         self.tableViewResults.delegate = self
         self.tableViewResults.dataSource = self
         tableViewResults.estimatedRowHeight = 131
         tableViewResults.rowHeight = UITableViewAutomaticDimension
+        
         self.mySearchBar.delegate = self
         self.mySearchBar.placeholder = "Search..."
         
-        self.tableViewResults.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+        //Set NavigationBar Keyboard
+        let keyboardToolBar = UIToolbar()
+        keyboardToolBar.sizeToFit()
         
-        //let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        //self.view.addGestureRecognizer(tap)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem:
+            UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem:
+            UIBarButtonSystemItem.done, target: self, action: #selector(self.dismissKeyboard) )
         
+        keyboardToolBar.setItems([flexibleSpace, doneButton], animated: true)
+        
+        self.mySearchBar.inputAccessoryView = keyboardToolBar
         
     }
     
@@ -72,6 +82,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //Custom Methods
     @objc func dismissKeyboard(){
         self.mySearchBar.endEditing(true)
+    }
+    
+    func stopCurrentMusic(){
+        player.pause()
+        player = AVPlayer()
     }
     
     func showAlertError(message:String){
@@ -159,27 +174,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 playerViewController.player!.play()
             }
         }else{
-            
-            /*let playerItem = AVPlayerItem(url: URL(string: "https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music6/v4/13/22/67/1322678b-e40d-fb4d-8d9b-3268fe03b000/mzaf_8818596367816221008.plus.aac.p.m4a")!)
-            let player = AVPlayer(playerItem: playerItem)
-            player.play()*/
-           
+            self.stopCurrentMusic()
             let videoURL = URL(string: (resultsItunes[indexPath.row]["previewUrl"] as? String)!)
-            let player = AVPlayer(url: videoURL!)
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
-            self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-            }
+            player = AVPlayer(url: videoURL!)
+            let playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = self.view.bounds
+            self.view.layer.addSublayer(playerLayer)
+            player.play()
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print("deselect")
+        player.pause()
+        player = AVPlayer()
     }
     //Pragma Mark SearchBar Delegates Methods
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("search Clicked! \(String(describing: mediaType)) ")
+        self.stopCurrentMusic()
         self.mySearchBar.endEditing(true)
         
         // Position Activity Indicator in the center of the main view
