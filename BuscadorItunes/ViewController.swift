@@ -146,6 +146,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("cellSelected")
+        if(mediaType == "movie" || mediaType == "tvShow"){
+            let destinationVC = DetailViewController()
+            destinationVC.URL = resultsItunes[indexPath.row]["previewUrl"] as? String
+            destinationVC.performSegue(withIdentifier: "detailView", sender: self)
+        }else{
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        print("deselect")
+    }
     //Pragma Mark SearchBar Delegates Methods
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("search Clicked! \(String(describing: mediaType)) ")
