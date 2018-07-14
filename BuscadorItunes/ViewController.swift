@@ -90,7 +90,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func showAlertError(message:String){
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
@@ -191,69 +191,73 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     //Pragma Mark SearchBar Delegates Methods
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.stopCurrentMusic()
-        self.mySearchBar.endEditing(true)
-        
-        // Position Activity Indicator in the center of the main view
-        myActivityIndicator.center = view.center
-        myActivityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(myActivityIndicator)
-        // Start Activity Indicator
-        myActivityIndicator.startAnimating()
-        
-        let urlComponents = NSURLComponents()
-        urlComponents.scheme = "https";
-        urlComponents.host = "itunes.apple.com";
-        urlComponents.path = "/search";
-        
-        // add params
-        let dateQuery = NSURLQueryItem(name: "media", value: mediaType)
-        let conceptQuery = NSURLQueryItem(name: "term", value: searchBar.text)
-        urlComponents.queryItems = [dateQuery, conceptQuery] as [URLQueryItem]
-        
-        self.resultsItunes = [[String:Any]]()
-        
-        guard let url = urlComponents.url else {return}
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let dataResponse = data,
-                error == nil else {
-                    print(error?.localizedDescription ?? "Response Error")
-                    self.showAlertError(message: "Response Error")
+        if(searchBar.text != ""){
+            self.stopCurrentMusic()
+            self.mySearchBar.endEditing(true)
+            
+            // Position Activity Indicator in the center of the main view
+            myActivityIndicator.center = view.center
+            myActivityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+            view.addSubview(myActivityIndicator)
+            // Start Activity Indicator
+            myActivityIndicator.startAnimating()
+            
+            let urlComponents = NSURLComponents()
+            urlComponents.scheme = "https";
+            urlComponents.host = "itunes.apple.com";
+            urlComponents.path = "/search";
+            
+            // add params
+            let dateQuery = NSURLQueryItem(name: "media", value: mediaType)
+            let conceptQuery = NSURLQueryItem(name: "term", value: searchBar.text)
+            urlComponents.queryItems = [dateQuery, conceptQuery] as [URLQueryItem]
+            
+            self.resultsItunes = [[String:Any]]()
+            
+            guard let url = urlComponents.url else {return}
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let dataResponse = data,
+                    error == nil else {
+                        print(error?.localizedDescription ?? "Response Error")
+                        self.showAlertError(message: "Response Error")
+                        DispatchQueue.main.async {
+                            self.myActivityIndicator.stopAnimating()
+                        }
+                        return }
+                do{
+                    //here dataResponse received from a network request
+                    let jsonResponse = try JSONSerialization.jsonObject(with:
+                        dataResponse, options: [])
+                    //print(jsonResponse) //Response result
+                    print(jsonResponse)
+                    
+                    guard let jsonArray = jsonResponse as? [String: Any] else {
+                        return
+                    }
+                    
+                    //Now get results property
+                    guard let results = jsonArray["results"] as? [[String:Any]] else { return }
+             
+                    self.resultsItunes = results
+                    
+                    DispatchQueue.main.async {
+                        self.tableViewResults.reloadData()
+                        self.viewDidLayoutSubviews()
+                        self.myActivityIndicator.stopAnimating()
+                    }
+                    
+                } catch let parsingError {
+                    print("Error", parsingError)
+                    self.showAlertError(message: "Error Parsing")
                     DispatchQueue.main.async {
                         self.myActivityIndicator.stopAnimating()
                     }
-                    return }
-            do{
-                //here dataResponse received from a network request
-                let jsonResponse = try JSONSerialization.jsonObject(with:
-                    dataResponse, options: [])
-                //print(jsonResponse) //Response result
-                print(jsonResponse)
-                
-                guard let jsonArray = jsonResponse as? [String: Any] else {
-                    return
-                }
-                
-                //Now get results property
-                guard let results = jsonArray["results"] as? [[String:Any]] else { return }
-         
-                self.resultsItunes = results
-                
-                DispatchQueue.main.async {
-                    self.tableViewResults.reloadData()
-                    self.viewDidLayoutSubviews()
-                    self.myActivityIndicator.stopAnimating()
-                }
-                
-            } catch let parsingError {
-                print("Error", parsingError)
-                self.showAlertError(message: "Error Parsing")
-                DispatchQueue.main.async {
-                    self.myActivityIndicator.stopAnimating()
                 }
             }
+            task.resume()
+        }else{
+            self.showAlertError(message: "Debes ingresar algo para buscarlo en Itunes.")
         }
-        task.resume()
     }
 }
 

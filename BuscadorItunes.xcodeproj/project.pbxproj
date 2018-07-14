@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0407B61E20F98198001C206C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407B61D20F98198001C206C /* DetailViewController.swift */; };
 		048C485620F8064400C9DA2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C485520F8064400C9DA2F /* AppDelegate.swift */; };
 		048C485820F8064400C9DA2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C485720F8064400C9DA2F /* ViewController.swift */; };
 		048C485B20F8064400C9DA2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048C485920F8064400C9DA2F /* Main.storyboard */; };
@@ -37,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0407B61D20F98198001C206C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		048C485220F8064400C9DA2F /* BuscadorItunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuscadorItunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048C485520F8064400C9DA2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		048C485720F8064400C9DA2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 				E97300AD20F8E4EA00DCD043 /* cell */,
 				048C485520F8064400C9DA2F /* AppDelegate.swift */,
 				048C485720F8064400C9DA2F /* ViewController.swift */,
-				0407B61D20F98198001C206C /* DetailViewController.swift */,
 				048C485920F8064400C9DA2F /* Main.storyboard */,
 				048C485C20F8064600C9DA2F /* Assets.xcassets */,
 				048C485E20F8064600C9DA2F /* LaunchScreen.storyboard */,
@@ -277,7 +274,6 @@
 				E97300B020F8E66600DCD043 /* CustomTableViewCell.swift in Sources */,
 				048C485820F8064400C9DA2F /* ViewController.swift in Sources */,
 				048C485620F8064400C9DA2F /* AppDelegate.swift in Sources */,
-				0407B61E20F98198001C206C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
