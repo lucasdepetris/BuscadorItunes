@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
@@ -52,8 +54,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         self.tableViewResults.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        //self.view.addGestureRecognizer(tap)
         
         
     }
@@ -149,11 +151,26 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("cellSelected")
         if(mediaType == "movie" || mediaType == "tvShow"){
-            let destinationVC = DetailViewController()
-            destinationVC.URL = resultsItunes[indexPath.row]["previewUrl"] as? String
-            destinationVC.performSegue(withIdentifier: "detailView", sender: self)
+            let videoURL = URL(string: (resultsItunes[indexPath.row]["previewUrl"] as? String)!)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
         }else{
             
+            /*let playerItem = AVPlayerItem(url: URL(string: "https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music6/v4/13/22/67/1322678b-e40d-fb4d-8d9b-3268fe03b000/mzaf_8818596367816221008.plus.aac.p.m4a")!)
+            let player = AVPlayer(playerItem: playerItem)
+            player.play()*/
+           
+            let videoURL = URL(string: (resultsItunes[indexPath.row]["previewUrl"] as? String)!)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
         }
     }
     

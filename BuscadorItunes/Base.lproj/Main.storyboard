@@ -115,10 +115,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYw-Dh-fMQ">
-                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAg-Zm-BS8">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -132,7 +132,7 @@
                                 </constraints>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXW-i1-UjH">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
                                     <navigationItem id="RHH-sV-sFk">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="Q6P-Rd-Jbt">
@@ -152,7 +152,7 @@
                             <constraint firstItem="TYw-Dh-fMQ" firstAttribute="leading" secondItem="hP6-wU-Z3r" secondAttribute="leading" id="n82-zz-Z8f"/>
                             <constraint firstItem="TYw-Dh-fMQ" firstAttribute="trailing" secondItem="hP6-wU-Z3r" secondAttribute="trailing" id="pPZ-kq-Pai"/>
                             <constraint firstItem="TYw-Dh-fMQ" firstAttribute="bottom" secondItem="hP6-wU-Z3r" secondAttribute="bottom" id="qJt-jC-9jU"/>
-                            <constraint firstItem="CXW-i1-UjH" firstAttribute="top" secondItem="Fow-Kq-c7H" secondAttribute="top" id="tmD-G0-hcy"/>
+                            <constraint firstItem="CXW-i1-UjH" firstAttribute="top" secondItem="hP6-wU-Z3r" secondAttribute="top" id="tmD-G0-hcy"/>
                             <constraint firstItem="TYw-Dh-fMQ" firstAttribute="top" secondItem="CXW-i1-UjH" secondAttribute="bottom" id="vot-hU-4ry"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hP6-wU-Z3r"/>
