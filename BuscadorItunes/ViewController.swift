@@ -71,7 +71,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     override func viewDidLayoutSubviews() {
-        self.resultsHeight.constant = tableViewResults.contentSize.height
+        DispatchQueue.main.async {
+            self.resultsHeight.constant = self.tableViewResults.contentSize.height
+            self.view.setNeedsLayout()
+        }
     }
     
     override func didReceiveMemoryWarning() {
